@@ -26,3 +26,4 @@ for j in get_inp.readlines():
 
 
 print(tot_ans)
+
