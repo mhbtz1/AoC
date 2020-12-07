@@ -3,6 +3,10 @@ dic = defaultdict(list)
 vis = {}
 st = set()
 table = {}
+#Part 1 is reversing the direction of the edges from the bags and dfs'ing from the gold bag, and finding component sizes
+#Part 2 is dp on a dag: let dp[i] be the amount of nested bags in the subtree with root i, dp[i] = 1 + (dp[j]*amt[j]) for j which are the children of i
+
+
 class Bag:
     def __init__(self, amt, i_d):
         self.amt=amt
