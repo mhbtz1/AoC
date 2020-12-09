@@ -20,7 +20,8 @@ def remap():
         tmp[i] = int(tmp[i])
     return tmp
 tmp = remap()
-
+#solved by applying 2SUM on some automatically balancing structure (i chose to use set), but I am fairly certain that a more optimal solution may exist, 
+#and if not it certainly does for certain specific test cases(reminds me of 3SUM problem from USACO Gold)
 def exists(vl,idx):
     l = 0
     r = WINDOW_SIZE-1
