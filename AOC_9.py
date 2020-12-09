@@ -44,7 +44,7 @@ def solve_p1():
     return -1
 cache = solve_p1()
 
-#this can be done in O(N lg lg N) time by observing that the prefix sum function is monotonic, 
+#this can be done in O(N lg N) time by observing that the prefix sum function is monotonic, 
 #and using sparse table/segtree for RMQ(for convenience, ill just do linear search).
 
 
