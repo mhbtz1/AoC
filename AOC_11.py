@@ -1,5 +1,4 @@
 import copy
-
 a = [i[0:len(i)] for i in open("AOC_11.txt","r")]
 print(len(a))
 for i in range(len(a)):
@@ -17,7 +16,6 @@ SZ_Y = 90 #90
 #the idea is that since the boolean function of seeing a seat or not at some point is FALSE FALSE FALSE FALSE .... TRUE TRUE TRUE TRUE, the point at which FALSE -> TRUE can be binsearched for efficiently
 #this should give a runtime comparable to part 1, although a bit slower due to logarithms; note this is a binsearch on distance, not point
 #never mind I decided to write a godforsaken linear search
-
 def bsearch_tot(x,y):
     const_x=x
     const_y=y
@@ -104,9 +102,6 @@ def bsearch_tot(x,y):
             continue
         ANS += 1
     return ANS
-    
-
-
 def second_num_adj():
     res_mat = [ [0 for i in range(SZ_Y)] for j in range(SZ_X) ]
     for i in range(SZ_X):
@@ -116,13 +111,6 @@ def second_num_adj():
             res_mat[i][j] = bsearch_tot(i,j)
     print(res_mat)
     return res_mat
-
-
-
-
-
-
-
 def num_adj():
     ans = 0
     res_mat = [ [0 for i in range(SZ_Y)] for j in range(SZ_X) ]
@@ -137,7 +125,6 @@ def num_adj():
                 if(a[i + dx[k]][j + dy[k]] =='#'):
                     res_mat[i][j] += 1
     return res_mat
-
 def step_automata(a):
     use = num_adj()
     print('\n')
@@ -148,8 +135,6 @@ def step_automata(a):
                 a[i][j] = 'L'
             elif(a[i][j] == 'L' and use[i][j] == 0):
                 a[i][j] = '#'
-            
-
     return a
 def step_automata_two(a):
     use = second_num_adj()
@@ -163,8 +148,6 @@ def step_automata_two(a):
             elif(a[i][j] == 'L' and use[i][j] == 0):
                 a[i][j] = '#'
     return a
-
-
 def solve_p1():
     while(True):
         global a
@@ -181,8 +164,6 @@ def solve_p1():
             if(a[i][j]=='#'):
                 ANS += 1
     return ANS
-
-#second_num_adj()
 def solve_p2():
     while(True):
         global a
@@ -198,13 +179,6 @@ def solve_p2():
             if(a[i][j]=='#'):
                 ANS += 1
     return ANS
-
-
-
-
-
-
 #print("PART 1: " + str(solve_p1()) )
-
 print("PART 2: " + str(solve_p2()) )
 
