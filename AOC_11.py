@@ -13,7 +13,8 @@ ITERATIONS = 37
 SZ_X = 91  #91
 SZ_Y = 90 #90
 
-#the idea is that since the boolean function of seeing a seat or not at some point is FALSE FALSE FALSE FALSE .... TRUE TRUE TRUE TRUE, the point at which FALSE -> TRUE can be binsearched for efficiently
+#the idea is that since the boolean function of seeing a seat or not at some point is FALSE FALSE FALSE FALSE .... TRUE TRUE TRUE TRUE....FALSE FALSE FALSE,
+#it can be ternary searched over? it is unimodal, i will have to come back later to implement a ternary search
 #this should give a runtime comparable to part 1, although a bit slower due to logarithms; note this is a binsearch on distance, not point
 #never mind I decided to write a godforsaken linear search
 def bsearch_tot(x,y):
