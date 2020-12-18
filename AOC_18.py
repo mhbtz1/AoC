@@ -23,12 +23,15 @@ def modularize_two():
     if(len(stk_two)>0 and stk_two[len(stk_two)-1]=='+'):
         idx = len(stk_two)-1
         while(True):
-            if(stk_two[idx]=='*' or stk_two[idx].isdigit()):
+            if(idx<0):
+                break
+            if(stk_two[idx] == '(' or stk_two[idx]=='*' or stk_two[idx].isdigit() ):#issue with this line here
                 break
             else:
                 stk_one.append(stk_two[idx])
                 stk_two.pop()
                 idx -= 1
+#evaluates the reverse polish notation into a
 def stack_reset():
     idx = 0
     while(idx < len(stk_one)):
@@ -86,5 +89,38 @@ def process_input_part_one():
         stk_one = []
         stk_two = []
     return res
+#operator precedence is assigned; addition takes precedence over multiplication
+def process_input_part_two():
+    res = 0
+    for expression in a:
+        expression = expression[len(expression)::-1]
+        global stk_one,stk_two
+        expression = [e for e in expression]
+        for j in range(len(expression)):
+            if(expression[j]==')'):
+                expression[j]='('
+            elif(expression[j]=='('):
+                expression[j]=')'
+        print(expression)
+        for char in range(len(expression)):
+            print(stk_one,stk_two)
+            if(expression[char].isdigit()):
+                stk_one.append(int(expression[char]))
+            else:
+                modularize()
+                modularize_two()
+                stk_two.append(expression[char])
 
-print(process_input_part_one())
+        print(stk_one)
+        sv = answer()
+        res += sv
+        print(sv)
+
+        stk_one = []
+        stk_two = []
+    return res
+        
+#print(process_input_part_one())
+print(process_input_part_two())
+
+
