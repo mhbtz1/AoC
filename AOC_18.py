@@ -1,6 +1,7 @@
 from collections import deque
 
-a = [e.replace(' ','') for e in open("AOC_18.txt").readlines()]
+a = [ (e.replace(' ','').split('\n'))[0] for e in open("AOC_18.txt").readlines()]
+print(a)
 stk_one = []
 stk_two = []
 
@@ -18,10 +19,19 @@ def modularize():
                     stk_one.append(stk_two[idx])
                     stk_two.pop()
             idx -= 1
+def modularize_two():
+    if(len(stk_two)>0 and stk_two[len(stk_two)-1]=='+'):
+        idx = len(stk_two)-1
+        while(True):
+            if(stk_two[idx]=='*' or stk_two[idx].isdigit()):
+                break
+            else:
+                stk_one.append(stk_two[idx])
+                stk_two.pop()
+                idx -= 1
 def stack_reset():
     idx = 0
     while(idx < len(stk_one)):
-        #print(stk_one[idx])
         if(isinstance(stk_one[idx],int)):
             idx += 1
         else:
@@ -36,31 +46,45 @@ def stack_reset():
                 stk_one.pop(idx-1)
                 idx -= 1
 
+def answer():
+    #print(stk_two)
+    for j in range(len(stk_two)-1,-1,-1):
+        stk_one.append(stk_two[j])
+    #print("STACK: ")
+    #print(stk_one)
+    stack_reset()
+    #print(stk_one)
+    return stk_one[0]
+
+
 #converts expression to a readable Reverse Polish Notation
-def process_input():
+def process_input_part_one():
+    res = 0
     for expression in a:
+        expression = expression[len(expression)::-1]
+        global stk_one,stk_two
+        print(stk_one,stk_two)
+        expression = [e for e in expression]
+        for j in range(len(expression)):
+            if(expression[j]==')'):
+                expression[j]='('
+            elif(expression[j]=='('):
+                expression[j]=')'
         for char in range(len(expression)):
-            #print(expression[char])
             if(expression[char].isdigit()):
                 stk_one.append(int(expression[char]))
             else:
-                print(stk_one)
                 stk_two.append(expression[char])
                 if(len(stk_two)>0):
-                    print(stk_two)
+                    pass
             modularize()
         modularize()
-        #print(stk_one)
-        
-process_input()
-def answer():
-    print(stk_two)
-    for j in range(len(stk_two)-1,-1,-1):
-        stk_one.append(stk_two[j])
-    print("STACK: ")
-    print(stk_one)
-    stack_reset()
-    print(stk_one)
-    return stk_one[0]
-answer()
+        sv = answer()
+        res += sv
+        print(sv)
 
+        stk_one = []
+        stk_two = []
+    return res
+
+print(process_input_part_one())
