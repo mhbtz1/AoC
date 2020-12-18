@@ -120,7 +120,7 @@ def process_input_part_two():
         stk_two = []
     return res
         
-#print(process_input_part_one())
+print(process_input_part_one())
 print(process_input_part_two())
 
 
