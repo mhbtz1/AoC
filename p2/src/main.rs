@@ -3,6 +3,7 @@ use std::fs;
 fn p1(input_str: &str) -> i64 {
     let binding = fs::read_to_string(input_str).expect("ERROR: Could not read file!");
     // recall: str denotes an immutable sequence of UTF-8 bytes, String is a pointer to a heap-allocated sequence of UTF-8 bytes (i.e. can be dynamically grown)
+    // also: recall that 
     let contents: Vec<&str> = binding.lines().collect();
     let mut ans = 0;
 
